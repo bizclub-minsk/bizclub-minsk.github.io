@@ -329,6 +329,8 @@ function send(v){
     page:location.href.split('?')[0], hp:A.hp||''
   };
   /* Lead — каждая отправленная анкета; CompleteRegistration — только одобренная (на неё оптимизируем рекламу) */
+  /* расширенное сопоставление (согласовано с клиентом): пиксель сам хеширует SHA-256 телефон и имя перед отправкой */
+  if(window.fbq){ fbq('init',PIXEL_ID,{ph:String(A.phone||'').replace(/\D/g,''),fn:String(A.name||'').trim().toLowerCase()}); }
   if(window.fbq){ fbq('track','Lead'); if(v.s==='pass')fbq('track','CompleteRegistration'); }
   if(!SHEET_URL)return;
   var body=JSON.stringify(data);
