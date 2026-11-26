@@ -240,7 +240,6 @@ function render(){
       '<label class="fld" for="name">Имя<input id="name" type="text" autocomplete="given-name" value="'+esc(A.name)+'"></label>'+
       '<label class="fld" for="tg">Ник в Telegram<input id="tg" type="text" autocomplete="off" autocapitalize="off" placeholder="@username" value="'+esc(A.tg)+'"></label>'+
       '<label class="fld" for="phone">Телефон<input id="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+375 29 123-45-67" value="'+esc(A.phone||'')+'"></label>'+
-      '<label class="fld" for="age">Возраст<input id="age" type="number" inputmode="numeric" min="18" max="90" value="'+esc(A.age)+'"></label>'+
       '<label class="consent" for="ok"><input id="ok" type="checkbox"'+(A.ok?' checked':'')+'><span>Согласен на обработку персональных данных по <a href="privacy.html" target="_blank">политике клуба</a></span></label>'+
       '<input id="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">'+
       '<p class="err" id="err" hidden></p>'+nav(true,'Отправить анкету')+'</form>';
@@ -273,7 +272,7 @@ function render(){
       if(d.length<10||d.length>15){er.textContent='Проверьте номер телефона: с кодом страны, например +375 29 123-45-67';er.hidden=false;return}
       A.phone='+'+d;
       if(!ok){er.textContent='Нужно согласие на обработку данных';er.hidden=false;return}
-      A.hp=document.getElementById('website').value;A.name=n;A.age=document.getElementById('age').value;A.ok=true;next();};
+      A.hp=document.getElementById('website').value;A.name=n;A.ok=true;next();};
     return;
   }
   result();
@@ -297,7 +296,7 @@ function verdict(){
 
 function result(){
   var v=verdict(),h='';
-  if(v.s==='pass')h='<div class="res pass"><div class="win"><span class="badge">🎉 Анкета одобрена</span><h3>'+esc(A.name)+', добро пожаловать в клуб</h3><p>Вы подходите клубу. Вход в чат участников открыт.</p><a class="btn chat" href="'+CHAT_URL+'" target="_blank" rel="noopener">Перейти в чат клуба →</a><p class="fine">Откроется Telegram. Нажмите «Вступить», и администратор подтвердит вход.</p><div class="intro"><b>👋 После вступления познакомьтесь с клубом</b><p>Напишите в чат пару строк о себе: как вас зовут, чем занимаетесь и какую задачу сейчас решаете. Так мы быстрее найдём для вас полезные знакомства.</p></div></div></div>';
+  if(v.s==='pass')h='<div class="res pass"><div class="win"><span class="badge">🎉 Анкета одобрена</span><h3>'+esc(A.name)+', добро пожаловать в клуб</h3><a class="btn chat" href="'+CHAT_URL+'" target="_blank" rel="noopener">Перейти в чат клуба →</a><p class="fine">Откроется Telegram. Нажмите «Вступить», и администратор подтвердит вход.</p><div class="intro"><b>👋 После вступления познакомьтесь с клубом</b><p>Напишите в чат пару строк о себе: как вас зовут, чем занимаетесь и какую задачу сейчас решаете. Так мы быстрее найдём для вас полезные знакомства.</p></div></div></div>';
   /* «На проверке» и «отказ» выглядят одинаково: человек не узнаёт, что не подошёл. Статус различается только в таблице. */
   else h='<div class="res review"><div class="big-ico" aria-hidden="true">📨</div><span class="badge">Анкета на рассмотрении</span><h3>Спасибо, '+esc(A.name)+'! Анкету посмотрит команда клуба</h3><p>Мы внимательно читаем каждую анкету, чтобы в клубе собрались люди с похожими задачами и масштабом. Напишем вам в Telegram в течение 1–2 дней.</p></div>';
   if(!done){send(v);done=true}
