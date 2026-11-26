@@ -121,6 +121,7 @@ input:focus{outline:none;border-color:var(--blue);background:#fff}
 </style>
 </head>
 <body>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1146350644768634&amp;ev=PageView&amp;noscript=1"></noscript>
 
 <main class="hero">
   <div class="hero-in">
@@ -148,7 +149,7 @@ input:focus{outline:none;border-color:var(--blue);background:#fff}
 /* Адрес веб-приложения Google Apps Script (см. apps-script/README.md). Пусто = анкеты никуда не отправляются. */
 var SHEET_URL='https://script.google.com/macros/s/AKfycbyrblgDFNtNJxkaSQHOoSoWHfYTUNfHNPfSqgW4dtqIXsAIxdmil-JF64W__igJKsnv/exec';
 /* ID пикселя Meta. Пусто = пиксель не загружается. */
-var PIXEL_ID='';
+var PIXEL_ID='1146350644768634';
 /* Ссылка на Telegram-чат клуба (вход по заявке, одобряет админ). */
 var CHAT_URL='https://t.me/+NnwPrTE10X5kYTZi';
 /* Исключение: если сфера в отказе, но есть команда и доход от $3 000, анкета уходит на проверку, а не в отказ. */
@@ -199,7 +200,8 @@ function find(list,v){for(var k=0;k<list.length;k++)if(list[k].v===v)return list
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 
 /* открыть / закрыть окно анкеты */
-function open(){sheet.classList.add('on');document.body.classList.add('open');setTimeout(function(){var b=box.querySelector('button,input');if(b)b.focus({preventScroll:true})},250)}
+var started=false;
+function open(){if(!started&&window.fbq){fbq('trackCustom','QuizStart');}started=true;sheet.classList.add('on');document.body.classList.add('open');setTimeout(function(){var b=box.querySelector('button,input');if(b)b.focus({preventScroll:true})},250)}
 function close(){sheet.classList.remove('on');document.body.classList.remove('open');document.getElementById('go').focus({preventScroll:true})}
 document.getElementById('go').onclick=open;
 document.getElementById('close').onclick=close;
@@ -326,7 +328,8 @@ function send(v){
     utm_content:UTM.utm_content, utm_term:UTM.utm_term, fbclid:UTM.fbclid,
     page:location.href.split('?')[0], hp:A.hp||''
   };
-  if(window.fbq){ if(v.s==='pass')fbq('track','CompleteRegistration'); else fbq('track','Lead'); }
+  /* Lead — каждая отправленная анкета; CompleteRegistration — только одобренная (на неё оптимизируем рекламу) */
+  if(window.fbq){ fbq('track','Lead'); if(v.s==='pass')fbq('track','CompleteRegistration'); }
   if(!SHEET_URL)return;
   var body=JSON.stringify(data);
   function post(attempt){
