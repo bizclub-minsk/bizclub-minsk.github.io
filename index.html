@@ -285,6 +285,8 @@ function verdict(){
   var bigBiz=BIG_TEAM[A.team]&&BIG_INCOME[A.income];
   parts.forEach(function(p){
     var r=p[1].r;
+    /* руководитель отдела с подчинёнными проходит как директор */
+    if(p[0]==='Роль'&&A.role==='head'&&BIG_TEAM[A.team])return;
     if(p[0]==='Сфера'&&r==='no'&&bigBiz){rv.push('Сфера: '+p[1].l+' (исключение: есть команда и доход от $3 000)');return}
     if(r==='no')no.push(p[0]+': '+p[1].l);
     if(r==='review')rv.push(p[0]+': '+p[1].l);
