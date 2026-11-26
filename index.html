@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#2443D9">
 <title>Бизнес-клуб нового поколения · Минск</title>
-<meta name="description" content="Закрытая презентация бизнес-клуба нового поколения в Минске. Без продаж, коучей и случайных людей. Вход по анкете.">
+<meta name="description" content="Закрытая презентация бизнес-клуба нового поколения в Минске. Без воды и случайных людей. Вход по анкете.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Onest:wght@400;500;600;700&display=swap">
@@ -43,20 +43,20 @@ a{color:inherit}
 .hero{height:100%;display:flex;flex-direction:column;position:relative;overflow:hidden;
   padding:max(20px,env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px))}
 .hero::before{content:"";position:absolute;width:min(90vw,620px);aspect-ratio:1;border-radius:50%;right:-28%;bottom:-22%;background:radial-gradient(circle,rgba(255,240,0,.22),rgba(255,240,0,0) 65%);pointer-events:none}
-.hero-in{flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(18px,3.5vh,30px);max-width:1040px;width:100%;margin:0 auto;position:relative;z-index:1}
+.hero-in{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:clamp(18px,3.5vh,30px);max-width:1040px;width:100%;margin:0 auto;position:relative;z-index:1}
 .brand{font-family:var(--display);font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:13px;opacity:.9}
 .hero h1{font-family:var(--display);font-weight:700;text-transform:uppercase;color:var(--yellow);font-size:clamp(42px,min(11vw,9.5vh),104px);line-height:1.04;letter-spacing:-.005em;max-width:12ch}
 .lead{margin:0;font-size:clamp(17px,2.2vw,21px);max-width:34ch}
 .lead strong{display:block;color:var(--yellow);font-weight:600;margin-top:4px}
-.cta{display:grid;gap:10px;justify-items:start}
+.cta{display:grid;gap:10px;justify-items:center}
 .go{appearance:none;border:0;cursor:pointer;font:700 clamp(18px,2.4vw,21px)/1 var(--body);color:var(--ink);background:var(--yellow);padding:22px 34px;border-radius:18px;display:inline-flex;align-items:center;gap:12px;
   box-shadow:0 10px 30px -8px rgba(0,0,0,.45),0 0 0 0 rgba(255,240,0,.6);animation:pulse 2.2s infinite;transition:transform .15s}
 .go:hover{transform:translateY(-2px) scale(1.02)}
 .go .arr{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--ink);color:var(--yellow);font-size:18px}
 @keyframes pulse{0%{box-shadow:0 10px 30px -8px rgba(0,0,0,.45),0 0 0 0 rgba(255,240,0,.55)}70%{box-shadow:0 10px 30px -8px rgba(0,0,0,.45),0 0 0 16px rgba(255,240,0,0)}100%{box-shadow:0 10px 30px -8px rgba(0,0,0,.45),0 0 0 0 rgba(255,240,0,0)}}
 .note{font-size:14px;color:#D5DCFF}
-@media (max-width:560px){.cta{justify-items:stretch}.go{justify-content:center;width:100%}.note{text-align:center}}
-.foot{position:relative;z-index:1;max-width:1040px;width:100%;margin:0 auto;font-size:12px;color:#B9C3F5;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (max-width:560px){.cta{justify-items:stretch;width:100%}.go{justify-content:center;width:100%}}
+.foot{position:relative;z-index:1;max-width:1040px;width:100%;margin:0 auto;font-size:12px;color:#B9C3F5;display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
 
 /* ---------- окно анкеты ---------- */
 .sheet{position:fixed;inset:0;z-index:20;display:grid;place-items:center;background:rgba(12,20,70,.55);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .2s}
@@ -126,7 +126,7 @@ input:focus{outline:none;border-color:var(--blue);background:#fff}
   <div class="hero-in">
     <div class="brand">3 декабря · 18:45 · «210 метров», Чапаева,&nbsp;3</div>
     <h1>Принеси задачу&nbsp;— приведём человека</h1>
-    <p class="lead">Закрытая презентация бизнес-клуба нового поколения в&nbsp;Минске. <strong>Без продаж, коучей и случайных людей.</strong></p>
+    <p class="lead">Закрытая презентация бизнес-клуба нового поколения в&nbsp;Минске. <strong>Без воды и случайных людей.</strong></p>
     <div class="cta">
       <button type="button" class="go" id="go">Подать заявку <span class="arr" aria-hidden="true">→</span></button>
       <span class="note">5 коротких вопросов · 2 минуты</span>
@@ -150,7 +150,7 @@ var SHEET_URL='https://script.google.com/macros/s/AKfycbyrblgDFNtNJxkaSQHOoSoWHf
 /* ID пикселя Meta. Пусто = пиксель не загружается. */
 var PIXEL_ID='';
 /* Ссылка на Telegram-чат клуба (вход по заявке, одобряет админ). */
-var CHAT_URL='https://t.me/+LUUiTNvw_lFmYzky';
+var CHAT_URL='https://t.me/+NnwPrTE10X5kYTZi';
 /* Исключение: если сфера в отказе, но есть команда и доход от $3 000, анкета уходит на проверку, а не в отказ. */
 var BIG_TEAM={'1-5':1,'6-20':1,'20+':1};
 var BIG_INCOME={'3000-5000':1,'5000-10000':1,'10000+':1};
@@ -298,7 +298,7 @@ function verdict(){
 
 function result(){
   var v=verdict(),h='';
-  if(v.s==='pass')h='<div class="res pass"><div class="win"><span class="badge">🎉 Анкета одобрена</span><h3>'+esc(A.name)+', добро пожаловать в клуб</h3><a class="btn chat" href="'+CHAT_URL+'" target="_blank" rel="noopener">Перейти в чат клуба →</a><p class="fine">Откроется Telegram. Нажмите «Вступить», и администратор подтвердит вход.</p><div class="intro"><b>👋 После вступления познакомьтесь с клубом</b><p>Напишите в чат пару строк о себе: как вас зовут, чем занимаетесь и какую задачу сейчас решаете. Так мы быстрее найдём для вас полезные знакомства.</p></div></div></div>';
+  if(v.s==='pass')h='<div class="res pass"><div class="win"><span class="badge">🎉 Анкета одобрена</span><h3>'+esc(A.name)+', добро пожаловать в клуб</h3><a class="btn chat" href="'+CHAT_URL+'" target="_blank" rel="noopener">Перейти в чат клуба →</a><p class="fine">Откроется Telegram. Нажмите «Вступить».</p><div class="intro"><b>👋 После вступления познакомьтесь с клубом</b><p>Напишите в чат пару строк о себе: как вас зовут, чем занимаетесь и какую задачу сейчас решаете. Так мы быстрее найдём для вас полезные знакомства.</p></div></div></div>';
   /* «На проверке» и «отказ» выглядят одинаково: человек не узнаёт, что не подошёл. Статус различается только в таблице. */
   else h='<div class="res review"><div class="big-ico" aria-hidden="true">📨</div><span class="badge">Анкета на рассмотрении</span><h3>Спасибо, '+esc(A.name)+'! Анкету посмотрит команда клуба</h3><p>Мы внимательно читаем каждую анкету, чтобы в клубе собрались люди с похожими задачами и масштабом. Напишем вам в Telegram в течение 1–2 дней.</p></div>';
   if(!done){send(v);done=true}
