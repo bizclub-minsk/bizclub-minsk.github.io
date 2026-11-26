@@ -45,9 +45,9 @@ a{color:inherit}
 .hero::before{content:"";position:absolute;width:min(90vw,620px);aspect-ratio:1;border-radius:50%;right:-28%;bottom:-22%;background:radial-gradient(circle,rgba(255,240,0,.22),rgba(255,240,0,0) 65%);pointer-events:none}
 .hero-in{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;text-align:left;gap:clamp(18px,3.5vh,30px);max-width:640px;width:100%;margin:0 auto;position:relative;z-index:1}
 .brand{font-family:var(--display);font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:13px;opacity:.9}
-.hero h1{font-family:var(--display);font-weight:700;text-transform:uppercase;color:var(--yellow);font-size:clamp(42px,min(11vw,9.5vh),104px);line-height:1.04;letter-spacing:-.005em;max-width:12ch}
+.hero h1{font-family:var(--display);font-weight:700;text-transform:uppercase;color:var(--yellow);font-size:clamp(36px,min(10vw,7.5vh),88px);line-height:1.04;letter-spacing:-.005em;max-width:14ch}
 .lead{margin:0;font-size:clamp(17px,2.2vw,21px);max-width:34ch}
-.lead strong{display:block;color:var(--yellow);font-weight:600;margin-top:4px}
+.lead strong{color:var(--yellow);font-weight:600}
 .cta{display:grid;gap:10px;justify-items:start}
 .go{appearance:none;border:0;cursor:pointer;font:700 clamp(18px,2.4vw,21px)/1 var(--body);color:var(--ink);background:var(--yellow);padding:22px 34px;border-radius:18px;display:inline-flex;align-items:center;gap:12px;
   box-shadow:0 10px 30px -8px rgba(0,0,0,.45),0 0 0 0 rgba(255,240,0,.6);animation:pulse 2.2s infinite;transition:transform .15s}
@@ -125,8 +125,8 @@ input:focus{outline:none;border-color:var(--blue);background:#fff}
 <main class="hero">
   <div class="hero-in">
     <div class="brand">3 декабря · 18:45 · «210 метров», Чапаева,&nbsp;3</div>
-    <h1>Принеси задачу&nbsp;— приведём человека</h1>
-    <p class="lead">Закрытая презентация бизнес-клуба нового поколения в&nbsp;Минске. <strong>Без воды и случайных людей.</strong></p>
+    <h1>Закрытая презентация бизнес&#8209;клуба нового поколения в&nbsp;Минске</h1>
+    <p class="lead"><strong>Без воды и случайных людей.</strong></p>
     <div class="cta">
       <button type="button" class="go" id="go">Подать заявку <span class="arr" aria-hidden="true">→</span></button>
       <span class="note">5 коротких вопросов · 2 минуты</span>
