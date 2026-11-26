@@ -4,17 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
+<meta name="theme-color" content="#2443D9">
 <title>Закрытый бизнес-клуб · Минск</title>
-<meta name="description" content="Закрытый клуб собственников и руководителей Минска. Принеси задачу — познакомим с тем, кто её уже решал. Вход по анкете.">
+<meta name="description" content="Закрытая презентация бизнес-клуба в Минске. Без продаж, коучей и случайных людей. Вход по анкете.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Onest:wght@400;500;600;700&display=swap">
 <style>
-/* Layout: one mobile-first column; blue studio-paper hero like the ad creatives, then a white quiz card that does the real work. Single brand theme by choice. */
+/* Один экран: синяя шапка как в креативах. Анкета открывается поверх экрана отдельным окном. */
 :root{
-  --blue:#2443D9;      /* paper blue from the creatives */
+  --blue:#2443D9;
   --blue-deep:#18309F;
-  --yellow:#FFF000;    /* headline yellow from the brief */
+  --yellow:#FFF000;
   --ink:#0F1533;
   --paper:#F3F5FC;
   --card:#FFFFFF;
@@ -22,160 +23,129 @@
   --muted:#5A6386;
   --ok:#0E8A4F; --ok-bg:#E3F6EC;
   --warn:#9A6400; --warn-bg:#FFF4D6;
-  --no:#B3261E; --no-bg:#FBE6E4;
+  --no:#B3261E;
+  /* мягкие подложки для иконок вариантов */
+  --t1:#E6EBFF; --t2:#FFF7B8; --t3:#DDF5E8; --t4:#FFE6DA; --t5:#EFE4FF;
   --display:"Oswald","Arial Narrow",Impact,sans-serif;
   --body:"Onest",-apple-system,"Segoe UI",Roboto,sans-serif;
   color-scheme:light;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5}
-.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+html,body{height:100%}
+body{margin:0;background:var(--blue);color:#fff;font-family:var(--body);font-size:16px;line-height:1.5;overflow:hidden}
+body.open{overflow:hidden}
 h1,h2,h3{text-wrap:balance;margin:0}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
+/* ---------- первый экран ---------- */
+.hero{height:100%;display:flex;flex-direction:column;position:relative;overflow:hidden;
+  padding:max(20px,env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px))}
+.hero::before{content:"";position:absolute;width:min(90vw,620px);aspect-ratio:1;border-radius:50%;right:-28%;bottom:-22%;background:radial-gradient(circle,rgba(255,240,0,.22),rgba(255,240,0,0) 65%);pointer-events:none}
+.hero-in{flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(18px,3.5vh,30px);max-width:1040px;width:100%;margin:0 auto;position:relative;z-index:1}
+.brand{font-family:var(--display);font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:13px;opacity:.9}
+.hero h1{font-family:var(--display);font-weight:700;text-transform:uppercase;color:var(--yellow);font-size:clamp(42px,min(11vw,9.5vh),104px);line-height:1.04;letter-spacing:-.005em;max-width:12ch}
+.lead{margin:0;font-size:clamp(17px,2.2vw,21px);max-width:34ch}
+.lead strong{display:block;color:var(--yellow);font-weight:600;margin-top:4px}
+.cta{display:grid;gap:10px;justify-items:start}
+.go{appearance:none;border:0;cursor:pointer;font:700 clamp(18px,2.4vw,21px)/1 var(--body);color:var(--ink);background:var(--yellow);padding:22px 34px;border-radius:18px;display:inline-flex;align-items:center;gap:12px;
+  box-shadow:0 10px 30px -8px rgba(0,0,0,.45),0 0 0 0 rgba(255,240,0,.6);animation:pulse 2.2s infinite;transition:transform .15s}
+.go:hover{transform:translateY(-2px) scale(1.02)}
+.go .arr{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--ink);color:var(--yellow);font-size:18px}
+@keyframes pulse{0%{box-shadow:0 10px 30px -8px rgba(0,0,0,.45),0 0 0 0 rgba(255,240,0,.55)}70%{box-shadow:0 10px 30px -8px rgba(0,0,0,.45),0 0 0 16px rgba(255,240,0,0)}100%{box-shadow:0 10px 30px -8px rgba(0,0,0,.45),0 0 0 0 rgba(255,240,0,0)}}
+.note{font-size:14px;color:#D5DCFF}
+@media (max-width:560px){.cta{justify-items:stretch}.go{justify-content:center;width:100%}.note{text-align:center}}
+.foot{position:relative;z-index:1;max-width:1040px;width:100%;margin:0 auto;font-size:12px;color:#B9C3F5;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
-/* hero */
-.hero{background:var(--blue);color:#fff;position:relative;overflow:hidden}
-.hero .wrap{padding-block:40px 56px;display:grid;gap:28px;position:relative;z-index:1}
-.brand{font-family:var(--display);font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:14px;color:#fff;opacity:.9}
-.hero h1{font-family:var(--display);font-weight:700;text-transform:uppercase;color:var(--yellow);font-size:clamp(44px,11vw,104px);line-height:1.04;letter-spacing:-.005em;max-width:12ch;overflow-wrap:anywhere}
-.lead{font-size:clamp(17px,2.2vw,20px);max-width:36ch;color:#fff}
-.lead strong{color:var(--yellow);font-weight:600}
-.cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
-.btn{appearance:none;border:0;cursor:pointer;font:600 17px/1 var(--body);padding:18px 26px;border-radius:14px;background:var(--yellow);color:var(--ink);text-decoration:none;display:inline-flex;gap:10px;align-items:center;transition:transform .15s}
-.btn:hover{transform:translateY(-2px)}
-.btn.dark{background:var(--ink);color:#fff}
-.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
-.btn:disabled{opacity:.35;cursor:not-allowed;transform:none}
-.note{font-size:14px;color:#D5DCFF;max-width:40ch}
-.stamp{position:absolute;right:-30px;bottom:-34px;font-family:var(--display);font-weight:700;font-size:200px;line-height:1;color:var(--blue-deep);pointer-events:none;user-select:none}
-
-/* sections */
-section.block .wrap{padding-block:56px;display:grid;gap:24px}
-.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
-h2{font-family:var(--display);text-transform:uppercase;font-size:clamp(30px,5vw,46px);line-height:1}
-.who{display:flex;flex-wrap:wrap;gap:8px}
-.who span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:15px}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-.step{background:var(--card);border-radius:18px;padding:22px;display:grid;gap:8px;align-content:start}
-.step .n{font-family:var(--display);font-size:40px;line-height:1;color:var(--blue)}
-.step h3{font-size:18px}
-.step p{margin:0;color:var(--muted)}
-.rule{background:var(--ink);color:#fff;border-radius:22px;padding:28px;display:grid;gap:10px}
-.rule h3{font-family:var(--display);text-transform:uppercase;font-size:clamp(26px,4vw,36px);color:var(--yellow);line-height:1}
-.rule p{margin:0;max-width:60ch;color:#D7DCF2}
-
-/* quiz */
-#apply .wrap{padding-block:56px 72px}
-.quiz{background:var(--card);border-radius:24px;box-shadow:0 20px 50px -24px rgba(20,35,120,.35);max-width:640px;margin:0 auto;overflow:hidden}
-.q-head{padding:22px 24px 0;display:grid;gap:12px}
-.q-meta{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+/* ---------- окно анкеты ---------- */
+.sheet{position:fixed;inset:0;z-index:20;display:grid;place-items:center;background:rgba(12,20,70,.55);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .2s}
+.sheet.on{opacity:1;pointer-events:auto}
+.panel{background:var(--card);color:var(--ink);width:min(560px,100%);max-height:min(92vh,900px);overflow:auto;border-radius:26px;position:relative;transform:translateY(16px);transition:transform .25s;overscroll-behavior:contain}
+.sheet.on .panel{transform:none}
+@media (max-width:560px){.sheet{place-items:end stretch}.panel{width:100%;height:100%;max-height:none;border-radius:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}}
+.x{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:14px;z-index:2;appearance:none;border:0;width:38px;height:38px;border-radius:50%;background:var(--paper);color:var(--ink);font-size:20px;cursor:pointer}
+.q-head{padding:22px 64px 0 24px;display:grid;gap:12px}
+.q-meta{display:flex;gap:10px;align-items:center;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
 .bar{height:6px;background:var(--paper);border-radius:6px;overflow:hidden}
-.bar i{display:block;height:100%;background:var(--blue);width:0;transition:width .3s}
-.q-body{padding:20px 24px 24px;display:grid;gap:16px}
-.q-title{font-size:clamp(22px,3.4vw,26px);font-weight:700;line-height:1.2}
-.q-hint{margin:-8px 0 0;color:var(--muted);font-size:15px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),#5B78FF);width:0;transition:width .35s}
+.q-body{padding:18px 24px 24px;display:grid;gap:16px;animation:in .28s ease-out}
+@keyframes in{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.q-top{display:flex;gap:14px;align-items:center}
+.q-ico{flex:none;width:54px;height:54px;border-radius:16px;display:grid;place-items:center;font-size:28px;background:var(--yellow);transform:rotate(-6deg);box-shadow:0 6px 16px -8px rgba(0,0,0,.4)}
+.q-title{font-size:clamp(21px,3.4vw,25px);font-weight:700;line-height:1.2}
+.q-hint{margin:-6px 0 0;color:var(--muted);font-size:15px}
 .opts{display:grid;gap:8px}
-.opt{appearance:none;text-align:left;font:500 16px/1.35 var(--body);color:var(--ink);background:var(--paper);border:1.5px solid transparent;border-radius:14px;padding:14px 16px;cursor:pointer;display:flex;gap:12px;align-items:center;transition:border-color .15s,background .15s}
-.opt:hover{border-color:var(--line)}
-.opt::before{content:"";flex:none;width:18px;height:18px;border-radius:50%;border:2px solid #AEB6D8;background:var(--card)}
-.opt[aria-pressed="true"]{border-color:var(--blue);background:#E9EDFF}
-.opt[aria-pressed="true"]::before{border-color:var(--blue);background:radial-gradient(var(--blue) 45%,var(--card) 50%)}
+.opt{appearance:none;text-align:left;font:500 16px/1.3 var(--body);color:var(--ink);background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:10px 14px 10px 10px;cursor:pointer;display:flex;gap:12px;align-items:center;transition:border-color .15s,background .15s,transform .1s}
+.opt:hover{border-color:#AFBAF0;background:#FAFBFF}
+.opt:active{transform:scale(.985)}
+.opt .e{flex:none;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:22px;background:var(--t1)}
+.opt:nth-child(5n+2) .e{background:var(--t2)}
+.opt:nth-child(5n+3) .e{background:var(--t3)}
+.opt:nth-child(5n+4) .e{background:var(--t4)}
+.opt:nth-child(5n+5) .e{background:var(--t5)}
+.opt .t{flex:1;min-width:0}
 .opt small{display:block;color:var(--muted);font-weight:400;font-size:13px}
+.opt::after{content:"";flex:none;width:22px;height:22px;border-radius:50%;border:2px solid #C5CCE8}
+.opt[aria-pressed="true"]{border-color:var(--blue);background:#EEF1FF}
+.opt[aria-pressed="true"]::after{border-color:var(--blue);background:var(--blue) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
 label.fld{display:grid;gap:6px;font-weight:600;font-size:15px}
-label.fld span.opt-tag{font-weight:400;color:var(--muted)}
-.cnt{font-weight:400;font-size:13px;color:var(--muted)}
-.cnt.ok{color:var(--ok)}
-input[type=text],input[type=url],input[type=number],input[type=tel],textarea{font:400 16px/1.4 var(--body);color:var(--ink);background:var(--paper);border:1.5px solid transparent;border-radius:12px;padding:13px 14px;width:100%}
-input:focus,textarea:focus{outline:none;border-color:var(--blue);background:#fff}
-textarea{min-height:96px;resize:vertical}
+input[type=text],input[type=number],input[type=tel]{font:400 16px/1.4 var(--body);color:var(--ink);background:var(--paper);border:1.5px solid transparent;border-radius:12px;padding:13px 14px;width:100%}
+input:focus{outline:none;border-color:var(--blue);background:#fff}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media (max-width:460px){.two{grid-template-columns:1fr}}
+@media (max-width:400px){.two{grid-template-columns:1fr}}
 .consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--muted)}
 .consent input{margin-top:3px;width:18px;height:18px;accent-color:var(--blue)}
 .q-nav{display:flex;justify-content:space-between;gap:12px;align-items:center}
 .back{appearance:none;background:none;border:0;color:var(--muted);font:500 15px var(--body);cursor:pointer;padding:8px 0}
+.btn{appearance:none;border:0;cursor:pointer;font:600 17px/1 var(--body);padding:17px 24px;border-radius:14px;background:var(--ink);color:#fff;text-decoration:none;display:inline-flex;gap:10px;align-items:center;justify-content:center}
 .err{color:var(--no);font-size:14px;margin:0}
 
-/* results */
-.res{padding:32px 24px;display:grid;gap:14px}
+/* итог */
+.res{padding:28px 24px 24px;display:grid;gap:14px;animation:in .3s ease-out}
 .badge{justify-self:start;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border-radius:8px}
-.res.pass .badge{background:var(--ok-bg);color:var(--ok)}
 .res.review .badge{background:var(--warn-bg);color:var(--warn)}
-.res.reject .badge{background:var(--no-bg);color:var(--no)}
-.res h3{font-size:clamp(24px,3.6vw,30px);line-height:1.15}
+.res h3{font-size:clamp(23px,3.6vw,28px);line-height:1.15}
 .res p{margin:0;color:var(--muted)}
-.res.pass{padding:16px}
-.win{background:var(--blue);color:#fff;border-radius:18px;padding:28px 22px;display:grid;gap:14px}
-.win h3{font-family:var(--display);text-transform:uppercase;font-size:clamp(28px,6vw,40px);line-height:1;color:var(--yellow)}
+.res .big-ico{font-size:44px;line-height:1}
+.res.pass{padding:64px 16px 16px}
+.win{background:var(--blue);color:#fff;border-radius:20px;padding:28px 22px;display:grid;gap:14px}
+.win h3{font-family:var(--display);text-transform:uppercase;font-size:clamp(28px,6vw,40px);line-height:1.04;color:var(--yellow)}
 .win p{color:#DCE2FF}
-.res.pass .win .badge{background:var(--yellow);color:var(--ink)}
-.btn.big{width:100%;justify-content:center;font-size:19px;padding:22px 24px;border-radius:16px;box-shadow:0 0 0 0 rgba(255,240,0,.6);animation:pulse 2s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,240,0,.55)}70%{box-shadow:0 0 0 14px rgba(255,240,0,0)}100%{box-shadow:0 0 0 0 rgba(255,240,0,0)}}
+.win .badge{background:var(--yellow);color:var(--ink)}
+.btn.chat{width:100%;font-size:19px;padding:22px 24px;border-radius:16px;background:var(--yellow);color:var(--ink);animation:pulse 2s infinite}
 .win .fine{font-size:13px;color:#B9C3F5}
 .intro{border-top:1px solid rgba(255,255,255,.2);padding-top:14px;display:grid;gap:4px}
 .intro b{color:#fff;font-size:15px}
 .win .intro p{font-size:14px}
-
-
-footer{color:var(--muted);font-size:13px}
-footer .wrap{padding-block:24px 40px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
 </style>
 </head>
 <body>
 
-<header class="hero">
-  <div class="wrap">
+<main class="hero">
+  <div class="hero-in">
     <div class="brand">Закрытый бизнес-клуб · Минск</div>
     <h1>Принеси задачу&nbsp;— приведём человека</h1>
-    <p class="lead">Закрытый круг собственников и руководителей Минска. Расскажите, что сейчас нужно решить, и мы познакомим вас с тем, кто через это уже прошёл. <strong>Без продаж, коучей и случайных людей.</strong></p>
-    <div class="cta-row">
-      <a class="btn" href="#apply">Подать заявку →</a>
-      <span class="note">2 минуты. Вход по анкете: мы смотрим сферу и масштаб бизнеса.</span>
+    <p class="lead">Закрытая презентация бизнес-клуба в&nbsp;Минске. <strong>Без продаж, коучей и случайных людей.</strong></p>
+    <div class="cta">
+      <button type="button" class="go" id="go">Подать заявку <span class="arr" aria-hidden="true">→</span></button>
+      <span class="note">5 коротких вопросов · 2 минуты</span>
     </div>
   </div>
-</header>
+  <div class="foot"><span>© Закрытый бизнес-клуб, 2026</span><a href="privacy.html">Политика обработки персональных данных</a></div>
+</main>
 
-<section class="block">
-  <div class="wrap">
-    <div class="eyebrow">Кто в клубе</div>
-    <h2>Собственники и руководители</h2>
-    <div class="who">
-      <span>Производство</span><span>Опт и дистрибуция</span><span>Строительство и недвижимость</span><span>Логистика</span><span>IT-компании</span><span>E-commerce</span><span>Сервисный бизнес с командой</span><span>Топ-менеджеры в найме</span>
-    </div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Анкета участника">
+  <div class="panel">
+    <button type="button" class="x" id="close" aria-label="Закрыть анкету">×</button>
+    <div id="quiz" aria-live="polite"></div>
   </div>
-</section>
-
-<section class="block" style="background:#E8ECFA">
-  <div class="wrap">
-    <div class="eyebrow">Как попасть</div>
-    <h2>Три шага</h2>
-    <div class="steps">
-      <div class="step"><div class="n">1</div><h3>Анкета</h3><p>Шесть коротких вопросов о вашем бизнесе. Так мы собираем круг людей одного уровня.</p></div>
-      <div class="step"><div class="n">2</div><h3>Вход в чат</h3><p>Если анкета подходит, сразу получите личную ссылку в закрытый чат клуба.</p></div>
-      <div class="step"><div class="n">3</div><h3>Ваша задача</h3><p>Расскажите, что нужно решить. Мы найдём в клубе и в нашей сети того, кто через это уже прошёл, и познакомим.</p></div>
-    </div>
-    <div class="rule">
-      <h3>Тебе здесь не продают</h3>
-      <p>В клубе нет коучей, марафонов и «экспертов», которые пришли за клиентами. Каждого участника мы проверяем по анкете, поэтому знакомства здесь полезные, а не рекламные.</p>
-    </div>
-  </div>
-</section>
-
-<section id="apply">
-  <div class="wrap">
-    <div class="quiz" id="quiz" aria-live="polite"></div>
-  </div>
-</section>
-
-<footer><div class="wrap"><span>© Закрытый бизнес-клуб, 2026</span><a href="privacy.html">Политика обработки персональных данных</a></div></footer>
+</div>
 
 <script>
 (function(){
 /* ===== НАСТРОЙКИ ===== */
-/* Адрес веб-приложения Google Apps Script (см. apps-script/README.md). Пока пусто, анкеты никуда не отправляются. */
+/* Адрес веб-приложения Google Apps Script (см. apps-script/README.md). Пусто = анкеты никуда не отправляются. */
 var SHEET_URL='https://script.google.com/macros/s/AKfycbyrblgDFNtNJxkaSQHOoSoWHfYTUNfHNPfSqgW4dtqIXsAIxdmil-JF64W__igJKsnv/exec';
 /* ID пикселя Meta. Пусто = пиксель не загружается. */
 var PIXEL_ID='';
@@ -185,93 +155,88 @@ var CHAT_URL='https://t.me/+m6XGZlVqewVlZTIy';
 var BIG_TEAM={'1-5':1,'6-20':1,'20+':1};
 var BIG_INCOME={'3000-5000':1,'5000-10000':1,'10000+':1};
 var ROLE=[
- {v:'owner',l:'Собственник бизнеса',r:'ok'},
- {v:'coowner',l:'Совладелец / партнёр',r:'ok'},
- {v:'top',l:'Топ-менеджер',s:'CEO, COO, CFO, коммерческий директор',r:'ok'},
- {v:'director',l:'Директор направления или филиала',r:'ok'},
- {v:'head',l:'Руководитель отдела',r:'review'},
- {v:'solo',l:'Самозанятый / ИП без команды',r:'review'},
- {v:'specialist',l:'Специалист в найме',r:'no'}
+ {v:'owner',e:'👑',l:'Собственник бизнеса',r:'ok'},
+ {v:'coowner',e:'🤝',l:'Совладелец / партнёр',r:'ok'},
+ {v:'top',e:'🎯',l:'Топ-менеджер',s:'CEO, COO, CFO, коммерческий директор',r:'ok'},
+ {v:'director',e:'🧭',l:'Директор направления или филиала',r:'ok'},
+ {v:'head',e:'📋',l:'Руководитель отдела',r:'review'},
+ {v:'solo',e:'🧑‍💻',l:'Самозанятый / ИП без команды',r:'review'},
+ {v:'specialist',e:'💼',l:'Специалист в найме',r:'no'}
 ];
 var SPHERE=[
- {v:'prod',l:'Производство',r:'ok'},
- {v:'trade',l:'Торговля, дистрибуция, опт',r:'ok'},
- {v:'build',l:'Строительство, недвижимость, девелопмент',r:'ok'},
- {v:'logistics',l:'Логистика, транспорт',r:'ok'},
- {v:'it',l:'IT-компания, разработка',r:'ok'},
- {v:'services',l:'Сервисный бизнес с командой',s:'общепит, медицина, автосервис и т.п.',r:'ok'},
- {v:'ecom',l:'E-commerce, интернет-магазин',r:'ok'},
- {v:'finlaw',l:'Финансы, инвестиции, бухгалтерия, право',r:'review'},
- {v:'consult',l:'Консалтинг',r:'review'},
- {v:'marketing',l:'Маркетинг, реклама, SMM',r:'no'},
- {v:'beauty',l:'Бьюти-сфера',s:'мастер, салон, косметология',r:'no'},
- {v:'coach',l:'Коучинг, психология, наставничество',r:'no'},
- {v:'other',l:'Другое',r:'review'}
+ {v:'prod',e:'🏭',l:'Производство',r:'ok'},
+ {v:'trade',e:'📦',l:'Торговля, дистрибуция, опт',r:'ok'},
+ {v:'build',e:'🏗️',l:'Строительство, недвижимость, девелопмент',r:'ok'},
+ {v:'logistics',e:'🚚',l:'Логистика, транспорт',r:'ok'},
+ {v:'it',e:'💻',l:'IT-компания, разработка',r:'ok'},
+ {v:'services',e:'🍽️',l:'Сервисный бизнес с командой',s:'общепит, медицина, автосервис и т.п.',r:'ok'},
+ {v:'ecom',e:'🛒',l:'E-commerce, интернет-магазин',r:'ok'},
+ {v:'finlaw',e:'⚖️',l:'Финансы, инвестиции, бухгалтерия, право',r:'review'},
+ {v:'consult',e:'📊',l:'Консалтинг',r:'review'},
+ {v:'marketing',e:'📣',l:'Маркетинг, реклама, SMM',r:'no'},
+ {v:'beauty',e:'💅',l:'Бьюти-сфера',s:'мастер, салон, косметология',r:'no'},
+ {v:'coach',e:'🧘',l:'Коучинг, психология, наставничество',r:'no'},
+ {v:'other',e:'✨',l:'Другое',r:'review'}
 ];
 var TEAM=[
- {v:'0',l:'Никого',r:'review'},
- {v:'1-5',l:'1–5 человек',r:'ok'},
- {v:'6-20',l:'6–20 человек',r:'ok'},
- {v:'20+',l:'Больше 20',r:'ok'}
+ {v:'0',e:'🙋',l:'Никого',r:'review'},
+ {v:'1-5',e:'👥',l:'1–5 человек',r:'ok'},
+ {v:'6-20',e:'🏢',l:'6–20 человек',r:'ok'},
+ {v:'20+',e:'🏙️',l:'Больше 20',r:'ok'}
 ];
 var INCOME=[
- {v:'<1500',l:'До $1 500',r:'no'},
- {v:'1500-3000',l:'$1 500 – 3 000',r:'ok'},
- {v:'3000-5000',l:'$3 000 – 5 000',r:'ok'},
- {v:'5000-10000',l:'$5 000 – 10 000',r:'ok'},
- {v:'10000+',l:'Больше $10 000',r:'ok'}
+ {v:'<1500',e:'🌱',l:'До $1 500',r:'no'},
+ {v:'1500-3000',e:'📈',l:'$1 500 – 3 000',r:'ok'},
+ {v:'3000-5000',e:'🚀',l:'$3 000 – 5 000',r:'ok'},
+ {v:'5000-10000',e:'💎',l:'$5 000 – 10 000',r:'ok'},
+ {v:'10000+',e:'🏆',l:'Больше $10 000',r:'ok'}
 ];
 var HIRED={top:1,director:1,head:1,specialist:1};
-var STEPS=['role','sphere','team','income','about','person'];
-var A={}, i=0, box=document.getElementById('quiz');
+var STEPS=['role','sphere','team','income','person'];
+var A={}, i=0, done=false, box=document.getElementById('quiz'), sheet=document.getElementById('sheet'), panel=sheet.querySelector('.panel');
 
 function find(list,v){for(var k=0;k<list.length;k++)if(list[k].v===v)return list[k];return null}
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 
+/* открыть / закрыть окно анкеты */
+function open(){sheet.classList.add('on');document.body.classList.add('open');setTimeout(function(){var b=box.querySelector('button,input');if(b)b.focus({preventScroll:true})},250)}
+function close(){sheet.classList.remove('on');document.body.classList.remove('open');document.getElementById('go').focus({preventScroll:true})}
+document.getElementById('go').onclick=open;
+document.getElementById('close').onclick=close;
+sheet.addEventListener('click',function(e){if(e.target===sheet)close()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&sheet.classList.contains('on'))close()});
+
 function head(){
   var pct=Math.round(i/STEPS.length*100);
-  return '<div class="q-head"><div class="q-meta"><span>Шаг '+(i+1)+' из '+STEPS.length+'</span><span>Анкета участника</span></div><div class="bar"><i style="width:'+pct+'%"></i></div></div>';
+  return '<div class="q-head"><div class="q-meta"><span>Шаг '+(i+1)+' из '+STEPS.length+'</span><span>·</span><span>Анкета участника</span></div><div class="bar"><i style="width:'+pct+'%"></i></div></div>';
 }
-function single(key,title,hint,list){
-  var h=head()+'<div class="q-body"><div class="q-title">'+title+'</div>'+(hint?'<p class="q-hint">'+hint+'</p>':'')+'<div class="opts">';
-  list.forEach(function(o){h+='<button type="button" class="opt" data-v="'+o.v+'" aria-pressed="'+(A[key]===o.v)+'"><span>'+o.l+(o.s?'<small>'+o.s+'</small>':'')+'</span></button>'});
+function top(ico,title){return '<div class="q-top"><div class="q-ico" aria-hidden="true">'+ico+'</div><div class="q-title">'+title+'</div></div>'}
+function single(key,ico,title,hint,list){
+  var h=head()+'<div class="q-body">'+top(ico,title)+(hint?'<p class="q-hint">'+hint+'</p>':'')+'<div class="opts">';
+  list.forEach(function(o){h+='<button type="button" class="opt" data-v="'+o.v+'" aria-pressed="'+(A[key]===o.v)+'"><span class="e" aria-hidden="true">'+o.e+'</span><span class="t">'+o.l+(o.s?'<small>'+o.s+'</small>':'')+'</span></button>'});
   h+='</div>'+nav(false)+'</div>';
   box.innerHTML=h;
   box.querySelectorAll('.opt').forEach(function(b){b.onclick=function(){
     A[key]=b.dataset.v;
     box.querySelectorAll('.opt').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
-    setTimeout(next,220);
+    setTimeout(next,240);
   }});
   bindBack();
 }
 function nav(showNext,label){
-  return '<div class="q-nav">'+(i>0?'<button type="button" class="back" id="back">← Назад</button>':'<span></span>')+(showNext?'<button type="submit" class="btn dark" id="nextBtn">'+(label||'Дальше')+'</button>':'')+'</div>';
+  return '<div class="q-nav">'+(i>0?'<button type="button" class="back" id="back">← Назад</button>':'<span></span>')+(showNext?'<button type="submit" class="btn" id="nextBtn">'+(label||'Дальше')+'</button>':'')+'</div>';
 }
 function bindBack(){var b=document.getElementById('back');if(b)b.onclick=function(){i--;render()}}
 
 function render(){
+  panel.scrollTop=0;
   var s=STEPS[i];
-  if(s==='role')return single('role','Ваша роль в бизнесе',null,ROLE);
-  if(s==='sphere')return single('sphere',HIRED[A.role]?'Сфера компании, в которой вы работаете':'Сфера вашего бизнеса','Выберите основную',SPHERE);
-  if(s==='team')return single('team',HIRED[A.role]?'Сколько человек у вас в подчинении?':'Сколько человек в вашей команде?',null,TEAM);
-  if(s==='income')return single('income','Ваш личный доход в месяц','Ответ видит только команда клуба',INCOME);
-  if(s==='about'){
-    box.innerHTML=head()+'<form class="q-body" id="f"><div class="q-title">Коротко о вашем бизнесе</div><p class="q-hint">Чем занимается компания и что делаете вы. Две-три фразы.</p>'+
-      '<label class="fld" for="about">О бизнесе<textarea id="about" maxlength="600" placeholder="Например: производим мебель для HoReCa, 40 человек, я собственник и коммерческий директор">'+esc(A.about)+'</textarea><span class="cnt" id="cnt"></span></label>'+
-      '<label class="fld" for="link"><span>Сайт или Instagram компании <span class="opt-tag">(необязательно)</span></span><input id="link" type="text" inputmode="url" placeholder="site.by или @company" value="'+esc(A.link)+'"></label>'+
-      '<p class="err" id="err" hidden></p>'+nav(true)+'</form>';
-    bindBack();
-    var ta=document.getElementById('about'),cnt=document.getElementById('cnt'),MIN=10;
-    function upd(){var n=ta.value.trim().length;cnt.textContent=n<MIN?'Ещё минимум '+(MIN-n)+' симв.':'✓ Отлично';cnt.className='cnt'+(n>=MIN?' ok':'');document.getElementById('err').hidden=true}
-    ta.oninput=upd;upd();
-    document.getElementById('f').onsubmit=function(e){e.preventDefault();
-      var v=ta.value.trim();
-      if(v.length<MIN){var er=document.getElementById('err');er.textContent='Опишите бизнес чуть подробнее: нужно ещё '+(MIN-v.length)+' симв. Например, чем занимается компания и сколько в ней людей.';er.hidden=false;ta.focus();return}
-      A.about=v;A.link=document.getElementById('link').value.trim();next();};
-    return;
-  }
+  if(s==='role')return single('role','💼','Ваша роль в бизнесе',null,ROLE);
+  if(s==='sphere')return single('sphere','🧩','Сфера компании','Выберите основную',SPHERE);
+  if(s==='team')return single('team','👥',HIRED[A.role]?'Сколько человек у вас в подчинении?':'Сколько человек в вашей команде?',null,TEAM);
+  if(s==='income')return single('income','💰','Ваш личный доход в месяц','Ответ видит только команда клуба',INCOME);
   if(s==='person'){
-    box.innerHTML=head()+'<form class="q-body" id="f"><div class="q-title">Как к вам обращаться</div>'+
+    box.innerHTML=head()+'<form class="q-body" id="f" novalidate>'+top('✍️','Как к вам обращаться')+
       '<label class="fld" for="name">Имя<input id="name" type="text" autocomplete="given-name" value="'+esc(A.name)+'"></label>'+
       '<label class="fld" for="tg">Ник в Telegram<input id="tg" type="text" autocomplete="off" autocapitalize="off" placeholder="@username" value="'+esc(A.tg)+'"></label>'+
       '<label class="fld" for="phone">Телефон<input id="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+375 29 123-45-67" value="'+esc(A.phone||'')+'"></label>'+
@@ -298,7 +263,8 @@ function render(){
         if(r.length>7)out+='-'+r.slice(7,9);
         pi.value=out;
       } else pi.value=(raw.charAt(0)==='+'?'+':'')+d;
-    };    document.getElementById('f').onsubmit=function(e){e.preventDefault();
+    };
+    document.getElementById('f').onsubmit=function(e){e.preventDefault();
       var n=document.getElementById('name').value.trim(),ok=document.getElementById('ok').checked,er=document.getElementById('err');
       var t=document.getElementById('tg').value.trim().replace(/^https?:\/\/t\.me\//i,'').replace(/^@/,'');
       if(!n){er.textContent='Укажите имя';er.hidden=false;return}
@@ -313,7 +279,7 @@ function render(){
   }
   result();
 }
-function next(){i++;render();box.scrollIntoView({behavior:'smooth',block:'start'})}
+function next(){i++;render()}
 
 function verdict(){
   var parts=[['Роль',find(ROLE,A.role)],['Сфера',find(SPHERE,A.sphere)],['Команда',find(TEAM,A.team)],['Доход',find(INCOME,A.income)]];
@@ -332,12 +298,12 @@ function verdict(){
 
 function result(){
   var v=verdict(),h='';
-  if(v.s==='pass')h='<div class="res pass"><div class="win"><span class="badge">Анкета одобрена</span><h3>'+esc(A.name)+', добро пожаловать в закрытый клуб</h3><p>Вы подходите клубу. Вход в чат участников открыт.</p><a class="btn big" href="'+CHAT_URL+'" target="_blank" rel="noopener">Перейти в чат клуба →</a><p class="fine">Откроется Telegram. Нажмите «Вступить», и администратор подтвердит вход.</p><div class="intro"><b>После вступления познакомьтесь с клубом</b><p>Напишите в чат пару строк о себе: как вас зовут, чем занимаетесь и какую задачу сейчас решаете. Так мы быстрее найдём для вас полезные знакомства.</p></div></div></div>';
+  if(v.s==='pass')h='<div class="res pass"><div class="win"><span class="badge">🎉 Анкета одобрена</span><h3>'+esc(A.name)+', добро пожаловать в закрытый клуб</h3><p>Вы подходите клубу. Вход в чат участников открыт.</p><a class="btn chat" href="'+CHAT_URL+'" target="_blank" rel="noopener">Перейти в чат клуба →</a><p class="fine">Откроется Telegram. Нажмите «Вступить», и администратор подтвердит вход.</p><div class="intro"><b>👋 После вступления познакомьтесь с клубом</b><p>Напишите в чат пару строк о себе: как вас зовут, чем занимаетесь и какую задачу сейчас решаете. Так мы быстрее найдём для вас полезные знакомства.</p></div></div></div>';
   /* «На проверке» и «отказ» выглядят одинаково: человек не узнаёт, что не подошёл. Статус различается только в таблице. */
-  else h='<div class="res review"><span class="badge">Анкета на рассмотрении</span><h3>Спасибо, '+esc(A.name)+'! Анкету посмотрит команда клуба</h3><p>Мы внимательно читаем каждую анкету, чтобы в клубе собрались люди с похожими задачами и масштабом. Напишем вам в Telegram в течение 1–2 дней.</p></div>';
-  send(v);
+  else h='<div class="res review"><div class="big-ico" aria-hidden="true">📨</div><span class="badge">Анкета на рассмотрении</span><h3>Спасибо, '+esc(A.name)+'! Анкету посмотрит команда клуба</h3><p>Мы внимательно читаем каждую анкету, чтобы в клубе собрались люди с похожими задачами и масштабом. Напишем вам в Telegram в течение 1–2 дней.</p></div>';
+  if(!done){send(v);done=true}
   box.innerHTML=h;
-  box.scrollIntoView({behavior:'smooth',block:'start'});
+  panel.scrollTop=0;
 }
 /* UTM-метки и fbclid из ссылки рекламы; запоминаются на время визита */
 var UTM={};
@@ -355,7 +321,7 @@ function send(v){
     status:v.label, reason:v.why,
     name:A.name, tg:A.tg, phone:A.phone,
     role:label(ROLE,A.role), sphere:label(SPHERE,A.sphere), team:label(TEAM,A.team), income:label(INCOME,A.income),
-    about:A.about, link:A.link||'', age:A.age||'', exp:A.exp||'',
+    about:'', link:'', age:A.age||'', exp:A.exp||'',
     utm_source:UTM.utm_source, utm_medium:UTM.utm_medium, utm_campaign:UTM.utm_campaign,
     utm_content:UTM.utm_content, utm_term:UTM.utm_term, fbclid:UTM.fbclid,
     page:location.href.split('?')[0], hp:A.hp||''
